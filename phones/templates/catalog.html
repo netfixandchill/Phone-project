@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { margin-left: 40px; }
+        .sort { margin-left: 40px; margin-bottom: 20px; }
+        .sort a { color: #007bff; text-decoration: none; margin-right: 15px; }
+        .catalog { display: flex; flex-wrap: wrap; justify-content: space-around; padding: 20px; }
+        .phone { text-align: center; margin-bottom: 40px; width: 240px; }
+        .phone img { width: 200px; height: auto; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .phone a { color: #0066ff; font-weight: bold; font-size: 18px; text-decoration: none; display:block; margin:10px 0; }
+        .price { font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Каталог</h1>
+    <div class="sort">
+        Сортировать по:
+        <a href="?sort=name">названию</a>
+        <a href="?sort=min_price">начиная с дешёвых</a>
+        <a href="?sort=max_price">начиная с дорогих</a>
+    </div>
+    <div class="catalog">
+        {% for phone in phones %}
+            <div class="phone">
+                <a href="{% url 'phone_detail' phone.slug %}">{{ phone.name }}</a>
+                <p class="price">Стоимость: {{ phone.price }} ₽</p>
+                <img src="{{ phone.image }}" alt="{{ phone.name }}">
+            </div>
+        {% empty %}
+            <p>Телефонов нет.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

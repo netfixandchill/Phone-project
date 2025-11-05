@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ phone.name }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; }
+        h1 { color: #0066ff; }
+        .phone { display: flex; align-items: flex-start; gap: 40px; }
+        .phone img { width: 300px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .details { font-size: 18px; }
+        .details p { margin: 10px 0; }
+        .back { display: inline-block; margin-top: 30px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <a class="back" href="{% url 'catalog' %}">&larr; Назад в каталог</a>
+    <div class="phone">
+        <img src="{{ phone.image }}" alt="{{ phone.name }}">
+        <div class="details">
+            <h1>{{ phone.name }}</h1>
+            <p><strong>Цена:</strong> {{ phone.price }} ₽</p>
+            <p><strong>Дата выхода:</strong> {{ phone.release_date }}</p>
+            <p><strong>LTE:</strong> {{ phone.lte_exists|yesno:"Да,Нет" }}</p>
+        </div>
+    </div>
+</body>
+</html>
